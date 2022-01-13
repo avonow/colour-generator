@@ -1,0 +1,32 @@
+body {
+  background-color: #ffaf69;
+}
+
+.centred {
+  display: grid;
+  place-items: center;
+
+  .svg-box {
+    position: relative;
+
+    .text-rgb {
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .rect {
+      width: "100%";
+      height: "100%";
+    }
+  }
+
+  .text {
+    text-align: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
