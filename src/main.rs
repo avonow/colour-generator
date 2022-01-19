@@ -39,7 +39,7 @@ impl Component for Page {
                 false
             }
             Msg::GenerateRandomColour => {
-                if let Ok(rgb) = get_rgb_values() {
+                if let Ok(rgb) = rgb_values() {
                     let rgb_value = format!("rgb({}, {}, {})", rgb[0], rgb[1], rgb[2]);
                     self.colour = rgb_value;
                     return true;
@@ -94,7 +94,7 @@ fn main() {
     yew::start_app::<Page>();
 }
 
-fn get_rgb_values() -> Result<[u8; 3], getrandom::Error> {
+fn rgb_values() -> Result<[u8; 3], getrandom::Error> {
     let mut buf = [0u8; 3];
     getrandom::getrandom(&mut buf)?;
     Ok(buf)
