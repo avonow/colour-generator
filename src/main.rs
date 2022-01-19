@@ -79,10 +79,11 @@ impl Component for Page {
                 </div><br/>
                 <button onclick={ctx.link().callback(|_| Msg::GenerateRandomColour)}>{"Generate Random Colour"}</button>
                 <p class={"text"}>
-                    <em>{"Colour names, Hex codes and RGB values are all valid, including..."}</em><br/>
+                    <em>{"Colour names, Hex codes, RGB, and HSL values are all valid, including..."}</em><br/>
                     {"red "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"red".to_string()}/></svg><br/>
                     {"#11859E "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"#11859E".to_string()}/></svg><br/>
                     {"rgb(240, 128, 128) "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"rgb(240, 128, 128)".to_string()}/></svg><br/>
+                    {"hsl(217, 90%, 61%) "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"hsl(217, 90%, 61%)".to_string()}/></svg><br/>
                 </p>
             </div>
         )
