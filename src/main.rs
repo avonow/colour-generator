@@ -19,7 +19,7 @@ impl Component for Page {
 
     fn create(_ctx: &Context<Self>) -> Self {
         Page {
-            colour: "rgb(73, 206, 235)".to_string(),
+            colour: String::from("rgb(73, 206, 235)"),
             placeholder: "red".to_string(),
             node_ref: NodeRef::default(),
         }
@@ -65,7 +65,7 @@ impl Component for Page {
 
         html!(
             <div class={"centred"}>
-                <h1 class={"text"}>{"Colour Generator"}</h1>
+                <h1 class={"heading"}>{"Colour Generator"}</h1><br/>
                 <div class={"svg-box"}>
                     <svg width={"300"} height={"150"}>
                         <rect class={"rect"} width={"100%"} height={"100%"} rx={"30"} fill={self.colour.to_string()}/>
@@ -77,14 +77,12 @@ impl Component for Page {
                     <input {onkeypress} placeholder={self.placeholder.to_string()} ref={self.node_ref.clone()}/>
                     <button {onclick}>{"Change Colour"}</button>
                 </div><br/>
-                <button onclick={ctx.link().callback(|_| Msg::GenerateRandomColour)}>{"Generate Random Colour"}</button>
-                <p class={"text"}>
-                    <em>{"Colour names, Hex codes, RGB, and HSL values are all valid, including..."}</em><br/>
-                    {"red "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"red".to_string()}/></svg><br/>
-                    {"#11859E "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"#11859E".to_string()}/></svg><br/>
-                    {"rgb(240, 128, 128) "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"rgb(240, 128, 128)".to_string()}/></svg><br/>
-                    {"hsl(217, 90%, 61%) "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={"hsl(217, 90%, 61%)".to_string()}/></svg><br/>
-                </p>
+                <button onclick={ctx.link().callback(|_| Msg::GenerateRandomColour)}>{"Generate Random Colour"}</button><br/>
+                <p class={"text"}><em>{"Colour names, Hex codes, RGB, and HSL values are all valid, including..."}</em><br/></p>
+                {html_colour_component("red")}
+                {html_colour_component("#11859E")}
+                {html_colour_component("rgb(240, 128, 128)")}
+                {html_colour_component("hsl(217, 90%, 61%)")}
             </div>
         )
     }
@@ -98,4 +96,12 @@ fn rgb_values() -> Result<[u8; 3], getrandom::Error> {
     let mut buf = [0u8; 3];
     getrandom::getrandom(&mut buf)?;
     Ok(buf)
+}
+
+fn html_colour_component(colour: &str) -> Html {
+    html! {
+        <p class={"text"}>
+            {colour}{" "}<svg width={"10"} height={"10"}><rect width={"100%"} height={"100%"} rx={"1"} fill={colour.to_string()}/></svg>
+        </p>
+    }
 }
